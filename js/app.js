@@ -1,5 +1,8 @@
+//--------------------
+// initiation 
 $("#name").focus();
 
+//--------------------
 // JOB ROLE
 
 const $titleInput = $("#title");
@@ -14,6 +17,7 @@ $titleInput.change(function (e) {
     }
 })
 
+//--------------------
 // T-shirt color
 
 const $tshirtDesign = $("#design");
