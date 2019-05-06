@@ -7,13 +7,13 @@ $("#name").focus();
 
 const $titleInput = $("#title");
 const $otherTitleInput = $("#other-title");
-$otherTitleInput.attr("type", "hidden")
+$otherTitleInput.hide();
 
 $titleInput.change(function (e) {
     if ($(this).val() === "other") {
-        $otherTitleInput.attr("type", "text")
+        $otherTitleInput.slideDown();
     } else {
-        $otherTitleInput.attr("type", "hidden")
+        $otherTitleInput.slideUp();
     }
 })
 
