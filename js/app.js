@@ -28,22 +28,20 @@ $tshirtDesign.change(function (e) {
     const tshirtcat = $(this).val();
     const mid = $colorsArray.length/2
     
-    $colorsArray.each( function(i, ele) { //reset all options 
-        ele.hidden = false;
+    $colorsArray.each( function() { //reset all options 
+        $(this).show();
     })
 
     if (tshirtcat === "js puns") {
-        $colorsArray.each( function(i, ele) {
-            ele.hidden = false
+        $colorsArray.each( function(i) {
             if (i >= mid) {
-                ele.hidden = true
+                $(this).hide();
             }
         })
     } else if (tshirtcat === "heart js") {
-        $colorsArray.each( function(i, ele) {
-            ele.hidden = false
+        $colorsArray.each( function(i) {
             if (i < mid) {
-                ele.hidden = true
+                $(this).hide();
             }
         })
     }
