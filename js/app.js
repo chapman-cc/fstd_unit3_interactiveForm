@@ -79,7 +79,7 @@ activities.addEventListener("change", e => {
      *  5) if user unchecked an input 
      *  6) it re-enabled all inputs with same session;
      */
-    if (target.checked === true){ 
+    if (target.checked){ 
         for (let input of inputs) { 
             if ((input !== target) && (input.dataset.session === session)) {
                 input.disabled = true;
