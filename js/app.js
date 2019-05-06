@@ -21,7 +21,11 @@ $titleInput.change(function (e) {
 // T-shirt color
 
 const $deisgn = $("#design");
+const $colorDiv = $("#colors-js-puns");
 const $colorsArr = $("#color").children();
+
+// hide color selection section intially 
+$colorDiv.hide();
 
 $deisgn.change(function () {
     const tshirtCat = $(this).val();
@@ -32,17 +36,22 @@ $deisgn.change(function () {
     })
 
     if (tshirtCat === "js puns") {
+        $colorDiv.slideDown();
         $colorsArr.each( function(i) {
             if (i >= mid) {
                 $(this).hide();
             }
         })
     } else if (tshirtCat === "heart js") {
+        $colorDiv.slideDown();
         $colorsArr.each( function(i) {
             if (i < mid) {
                 $(this).hide();
             }
         })
+    } else {
+        $colorDiv.slideUp();
+        
     }
 })
 
