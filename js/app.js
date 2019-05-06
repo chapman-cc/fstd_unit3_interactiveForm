@@ -4,15 +4,12 @@ $("#name").focus();
 
 const $titleInput = $("#title");
 const $otherTitleInput = $("#other-title");
-$otherTitleInput.css("display", "none");
+$otherTitleInput.attr("type", "hidden")
 
 $titleInput.change(function (e) {
     if ($(this).val() === "other") {
-        $otherTitleInput.css("display", "inline")
+        $otherTitleInput.attr("type", "text")
     } else {
-        $otherTitleInput.css("display", "none");
+        $otherTitleInput.attr("type", "hidden")
     }
 })
-if ($titleInput.val() === "other") {
-    $otherTitleInput.css("display", "inline")
-}
