@@ -52,7 +52,9 @@ $deisgn.change(function () {
 const $activitiesArray = $(".activities label");
 
 const activities = document.querySelector(".activities");
+activities.innerHTML += "<p><b>Total Price: </b><span class='activities-price'>0</span></p>"; //TODO: make dollar sign
 const inputs = activities.querySelectorAll("input");
+const priceSpan = activities.querySelector(".activities-price");
 
 inputs.forEach(input=> { 
     /** add dataset value (session and price) to input for conditioning */
