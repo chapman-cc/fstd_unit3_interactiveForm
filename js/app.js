@@ -20,26 +20,25 @@ $titleInput.change(function (e) {
 //--------------------
 // T-shirt color
 
-const $tshirtDesign = $("#design");
-const $tshirtColor = $("#color");
-const $colorsArray = $tshirtColor.children();
+const $deisgn = $("#design");
+const $colorsArr = $("#color").children();
 
-$tshirtDesign.change(function (e) {
-    const tshirtcat = $(this).val();
-    const mid = $colorsArray.length/2
+$deisgn.change(function () {
+    const tshirtCat = $(this).val();
+    const mid = $colorsArr.length/2
     
-    $colorsArray.each( function() { //reset all options 
+    $colorsArr.each( function() { //reset all options 
         $(this).show();
     })
 
-    if (tshirtcat === "js puns") {
-        $colorsArray.each( function(i) {
+    if (tshirtCat === "js puns") {
+        $colorsArr.each( function(i) {
             if (i >= mid) {
                 $(this).hide();
             }
         })
-    } else if (tshirtcat === "heart js") {
-        $colorsArray.each( function(i) {
+    } else if (tshirtCat === "heart js") {
+        $colorsArr.each( function(i) {
             if (i < mid) {
                 $(this).hide();
             }
