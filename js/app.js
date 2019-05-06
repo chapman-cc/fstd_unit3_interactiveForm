@@ -96,4 +96,12 @@ activities.addEventListener("change", e => {
             } 
         }
     }
+    
+    let totalPrice = 0;
+    inputs.forEach(input=> { // TODO: can use .reduce()
+        if (input.checked) {
+            totalPrice += input.dataset.price;
+        }
+    })
+    priceSpan.textContent = totalPrice;
 })
