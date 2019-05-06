@@ -61,7 +61,7 @@ inputs.forEach(input=> {
     const label = input.parentElement;
     const textArr = label.textContent.split(" ");
     const session = textArr[textArr.length - 2]; //TODO: use Regex to delete ","
-    const price = textArr[textArr.length - 1];
+    const price = textArr[textArr.length - 1]; //TODO: use Regex to make number 
     input.dataset.session = session;
     input.dataset.price = price;    
 })
@@ -70,7 +70,6 @@ inputs.forEach(input=> {
 activities.addEventListener("change", e => {
     const target = e.target;
     const session = target.dataset.session;
-    const price = target.dataset.price;
     /**
      * This checks 
      *  1) if user checked an input
@@ -90,7 +89,7 @@ activities.addEventListener("change", e => {
         }
     } else {
         for (let input of inputs) { 
-        if (input.dataset.session === session) {
+            if (input.dataset.session === session) {
                 input.disabled = false;
                 input.parentElement.style.textDecoration = "none";
             } 
