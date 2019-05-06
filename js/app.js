@@ -104,3 +104,34 @@ activities.addEventListener("change", e => {
     })
     priceSpan.textContent = totalPrice;
 })
+
+//--------------------
+// Payment
+
+const $paymentSelect = $("#payment");
+// payment default selected option is "Credit Card"
+$paymentSelect.find("[value='credit card']").attr("selected", true);
+
+const $creditCard = $("#credit-card");
+const $paypal = $creditCard.next()
+const $bitcoin = $creditCard.next().next();
+
+$paypal.hide();
+$bitcoin.hide();
+
+$paymentSelect.change(function () {
+    const method = $(this).val();
+    if (method === "credit card") {
+        $creditCard.slideDown();
+        $paypal.slideUp();
+        $bitcoin.slideUp();
+    } else if (method === "paypal") {
+        $creditCard.slideUp();
+        $paypal.slideDown();
+        $bitcoin.slideUp();
+    } else if (method === "bitcoin") {
+        $creditCard.slideUp();
+        $paypal.slideUp();
+        $bitcoin.slideDown();
+    } 
+})
