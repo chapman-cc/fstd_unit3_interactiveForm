@@ -61,7 +61,7 @@ $deisgn.change(function () {
 // const $activitiesArray = $(".activities label");
 
 const activities = document.querySelector(".activities");
-activities.innerHTML += "<p><b>Total Price: </b><span class='activities-price'>0</span></p>"; //TODO: use regex replace with $$ // style='display: none;'
+activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>"; 
 const inputs = activities.querySelectorAll("input");
 const priceSpan = activities.querySelector(".activities-price");
 
@@ -116,16 +116,14 @@ activities.addEventListener("change", e => {
             total += parseInt(input.dataset.price);
         }
     })
-    priceSpan.textContent = totalPrice;
-})
-// const total = Array.from(inputs).reduce((total, input)=> {
-//     if (input.checked) {
-//         const price = input.dataset.price;
-//         total + price;
-//     }
-// });
 
-// console.log(total);
+    if (total) {
+        priceSpan.parentElement.style.display = "block";
+    priceSpan.textContent = `$ ${total}`;
+    } else {
+        priceSpan.parentElement.style.display = "none"
+    }
+})
 
 
 //--------------------
