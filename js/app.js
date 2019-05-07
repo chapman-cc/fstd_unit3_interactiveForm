@@ -110,10 +110,10 @@ activities.addEventListener("change", e => {
         }
     }
     
-    let totalPrice = 0;
-    inputs.forEach(input=> { // TODO: can use .reduce()
+    let total = 0;
+    inputs.forEach(input=> {
         if (input.checked) {
-            totalPrice += input.dataset.price;
+            total += parseInt(input.dataset.price);
         }
     })
     priceSpan.textContent = totalPrice;
