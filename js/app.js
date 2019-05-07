@@ -1,7 +1,8 @@
 //--------------------
-// initiation 
-$("#name").focus();
+// BASIC INFO
 
+const $name = $("#name")
+$name.focus();
 
 // TODO: Name field can't be blank.
 // TODO: add red border and text
