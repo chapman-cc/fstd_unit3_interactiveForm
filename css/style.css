@@ -179,3 +179,18 @@ button:hover {
 		width: 49%;
 	}
 }
+
+/* ================================= 
+  custom
+==================================== */
+
+.err-text {
+	float: right;
+	color: #c10101;
+	margin-left: 1em;
+}
+
+.err-border {
+	outline: #c10101 5px solid;
+	transition: outline 5s;
+}
