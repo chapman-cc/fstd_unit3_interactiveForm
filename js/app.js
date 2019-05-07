@@ -58,10 +58,10 @@ $deisgn.change(function () {
 //--------------------
 // Registry
 
-const $activitiesArray = $(".activities label");
+// const $activitiesArray = $(".activities label");
 
 const activities = document.querySelector(".activities");
-activities.innerHTML += "<p><b>Total Price: </b><span class='activities-price'>0</span></p>"; //TODO: make dollar sign
+activities.innerHTML += "<p><b>Total Price: $</b><span class='activities-price'>0</span></p>";
 const inputs = activities.querySelectorAll("input");
 const priceSpan = activities.querySelector(".activities-price");
 
@@ -79,6 +79,7 @@ inputs.forEach(input=> {
 activities.addEventListener("change", e => {
     const target = e.target;
     const session = target.dataset.session;
+    
     /**
      * This checks 
      *  1) if user checked an input
@@ -89,12 +90,13 @@ activities.addEventListener("change", e => {
      *  5) if user unchecked an input 
      *  6) it re-enabled all inputs with same session;
      */
-    if (target.checked){ 
+    
+     if (target.checked){ 
         for (let input of inputs) { 
             if ((input !== target) && (input.dataset.session === session)) {
                 input.disabled = true;
                 input.parentElement.style.textDecoration = "line-through";
-            }               
+            }
         }
     } else {
         for (let input of inputs) { 
@@ -113,6 +115,15 @@ activities.addEventListener("change", e => {
     })
     priceSpan.textContent = totalPrice;
 })
+// const total = Array.from(inputs).reduce((total, input)=> {
+//     if (input.checked) {
+//         const price = input.dataset.price;
+//         total + price;
+//     }
+// });
+
+// console.log(total);
+
 
 //--------------------
 // Payment
