@@ -96,6 +96,7 @@ $deisgn.change(function () {
 // const $activitiesArray = $(".activities label");
 
 const activities = document.querySelector(".activities");
+activities.firstElementChild.innerHTML+='<span class="err-text" style="display: none;">Select at least 1 activities</span>';
 activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>"; 
 const inputs = Array.from(activities.querySelectorAll("input"));
 const priceSpan = activities.querySelector(".activities-price");
@@ -161,14 +162,17 @@ activities.addEventListener("change", e => {
 
     if (total) {
         priceSpan.parentElement.style.display = "block";
+
+        activities.querySelector(".err-text").style.display = "none"
     priceSpan.textContent = `$ ${total}`;
     } else {
-        priceSpan.parentElement.style.display = "none"
+        priceSpan.parentElement.style.display = "none";
+        
+        activities.querySelector(".err-text").style.display = "block"
+        priceSpan.textContent = `$ ${total}`;
     }
 })
 
-// TODO: User must select at least one checkbox under the "Register for Activities" section of the form.
-// TODO: add red border and text
 
 //--------------------
 // Payment
