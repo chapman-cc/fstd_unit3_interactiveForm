@@ -209,13 +209,60 @@ $paymentSelect.change(function () {
 })
 
 // TODO: If the selected payment option is "Credit Card," make sure the user has supplied a Credit Card number, a Zip Code, and a 3 number CVV value before the form can be submitted.
-// TODO: Credit Card field should only accept a number between 13 and 16 digits.
-// TODO: add red border and text if CREDIT CARD IS SELECTED
-// TODO: add conditional error message 
-// ? “Please enter a credit card number.”  || “Please enter a number that is between 13 and 16 digits long.”
+$paymentSelect.change(function () {
+    if ($paymentSelect.val() === "credit card") {
+        const $errSpan = $('<p class="err-text" style="display: none; float: none; margin: 0">error message insert here</p>');
+        $creditCard.prepend($errSpan);
 
-// TODO: The Zip Code field should accept a 5-digit number.
-// TODO: add red border and text if CREDIT CARD IS SELECTED
+        $cardNo = $("#cc-num");
+        $cardNo.keyup(function () {
+            const val = $(this).val();
+            const regex = /\d{13,16}/g;
+            const isValid = regex.test(val);
+            
+            if (isValid) {
+                $(this).removeClass("err-border");
+                $errSpan.removeClass("err-text").hide();
+            } else if (!isValid && val === "") {
+                $errSpan.text("Please enter a credit card number.")
+                $errSpan.addClass("err-text").show();
+            } else {
+                $(this).addClass("err-border");
+                $errSpan.text("Please enter a number that is between 13 and 16 digits long.")
+                $errSpan.addClass("err-text").show();
+            }
+        })
 
-// TODO: The CVV should only accept a number that is exactly 3 digits long.
-// TODO: add red border and text if CREDIT CARD IS SELECTED
+        $zipCode = $("#zip");
+        $zipCode.keyup(function () {
+            const val = $(this).val();
+            const regex = /\d{5}/g;
+            const isValid = regex.test(val);
+            
+            if (isValid) {
+                $(this).removeClass("err-border");
+                $errSpan.removeClass("err-text").hide();
+            } else {
+                $(this).addClass("err-border");
+                $errSpan.text("Please enter a 5 digit zip code.")
+                $errSpan.addClass("err-text").show();
+            }
+        })
+
+        $cvv = $("#cvv");
+        $cvv.keyup(function () {
+            const val = $(this).val();
+            const regex = /\d{3}/g;
+            const isValid = regex.test(val);
+            
+            if (isValid) {
+                $(this).removeClass("err-border");
+                $errSpan.removeClass("err-text").hide();
+            } else {
+                $(this).addClass("err-border");
+                $errSpan.text("Please enter a 3 digit security code.")
+                $errSpan.addClass("err-text").show();
+            }
+        })
+    }
+})
