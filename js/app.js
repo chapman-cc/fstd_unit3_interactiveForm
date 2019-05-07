@@ -5,6 +5,12 @@ const $name = $("#name")
 $name.focus();
 
 // TODO: Name field can't be blank.
+$name.keyup(function () {
+    const val = $(this).val();
+    const regex = new RegExp("^\w+\s?(\w+)?$", "i")
+    const isValid = regex.test(val);
+    console.log(`String: ${val}   is ${isValid}`)
+})
 // TODO: add red border and text
 
 // TODO: Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example.
