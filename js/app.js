@@ -61,7 +61,7 @@ $deisgn.change(function () {
 // const $activitiesArray = $(".activities label");
 
 const activities = document.querySelector(".activities");
-activities.innerHTML += "<p><b>Total Price: $</b><span class='activities-price'>0</span></p>";
+activities.innerHTML += "<p><b>Total Price: </b><span class='activities-price'>0</span></p>"; //TODO: use regex replace with $$ // style='display: none;'
 const inputs = activities.querySelectorAll("input");
 const priceSpan = activities.querySelector(".activities-price");
 
