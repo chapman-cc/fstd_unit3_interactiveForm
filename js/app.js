@@ -2,7 +2,15 @@
 // initiation 
 $("#name").focus();
 
-//--------------------
+
+// TODO: Name field can't be blank.
+// TODO: add red border and text
+
+// TODO: Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example.
+// TODO: add red border and text
+// TODO: use keyup listener 
+
+
 // JOB ROLE
 
 const $titleInput = $("#title");
@@ -125,6 +133,8 @@ activities.addEventListener("change", e => {
     }
 })
 
+// TODO: User must select at least one checkbox under the "Register for Activities" section of the form.
+// TODO: add red border and text
 
 //--------------------
 // Payment
@@ -156,3 +166,15 @@ $paymentSelect.change(function () {
         $bitcoin.slideDown();
     } 
 })
+
+// TODO: If the selected payment option is "Credit Card," make sure the user has supplied a Credit Card number, a Zip Code, and a 3 number CVV value before the form can be submitted.
+// TODO: Credit Card field should only accept a number between 13 and 16 digits.
+// TODO: add red border and text if CREDIT CARD IS SELECTED
+// TODO: add conditional error message 
+// ? “Please enter a credit card number.”  || “Please enter a number that is between 13 and 16 digits long.”
+
+// TODO: The Zip Code field should accept a 5-digit number.
+// TODO: add red border and text if CREDIT CARD IS SELECTED
+
+// TODO: The CVV should only accept a number that is exactly 3 digits long.
+// TODO: add red border and text if CREDIT CARD IS SELECTED
