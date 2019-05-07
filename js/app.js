@@ -66,13 +66,16 @@ const inputs = activities.querySelectorAll("input");
 const priceSpan = activities.querySelector(".activities-price");
 
 inputs.forEach(input=> { 
-    /** add dataset value (session and price) to input for conditioning */
-    const label = input.parentElement;
-    const textArr = label.textContent.split(" ");
-    const session = textArr[textArr.length - 2]; //TODO: use Regex to delete ","
-    const price = textArr[textArr.length - 1]; //TODO: use Regex to make number 
-    input.dataset.session = session;
-    input.dataset.price = price;    
+    /** add dataset value: session and price, to <input> for conditioning */
+    const labelText = input.parentElement.textContent;
+    const sessionRegex = /\d{1,2}(am|pm)-\d{1,2}(am|pm)/;
+    const priceRegex = /\d+\.?\d{2}/;
+
+    if (sessionRegex.test(labelText)) 
+        input.dataset.session = sessionRegex.exec(labelText)[0];
+
+    if (priceRegex.test(labelText))
+        input.dataset.price = priceRegex.exec(labelText)[0];
 })
 
 
