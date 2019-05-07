@@ -4,14 +4,22 @@
 const $name = $("#name")
 $name.focus();
 
-// TODO: Name field can't be blank.
+/** Name validator */
+$name.prev().append('<span class="err-text" style="display: none;">Name Cannot Be Empty</span>');
 $name.keyup(function () {
     const val = $(this).val();
-    const regex = new RegExp("^\w+\s?(\w+)?$", "i")
+    const regex = new RegExp("^\\w+\\s?(\\w+)?$", "i");
     const isValid = regex.test(val);
-    console.log(`String: ${val}   is ${isValid}`)
+    const $span = $(this).prev().children();
+    
+    if (!isValid) {
+        $(this).addClass("err-border");
+        $span.addClass("err-text").show();
+    } else {
+        $(this).removeClass("err-border");
+        $span.removeClass("err-text").hide();
+    }  
 })
-// TODO: add red border and text
 
 // TODO: Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example.
 // TODO: add red border and text
