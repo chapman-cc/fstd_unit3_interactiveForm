@@ -30,7 +30,7 @@ $email.keyup(function () {
     const regex = /[^@]+@[^@]+\.(com|net|org)/;
     const isValid = regex.test(val);
     const $span = $(this).prev().children();
-
+    
     if (isValid || val === "") {
         $(this).removeClass("err-border");
         $span.removeClass("err-text").hide();
@@ -39,6 +39,9 @@ $email.keyup(function () {
         $span.addClass("err-text").show();
     }  
 })
+
+
+/** Job Role */
 
 const $titleInput = $("#title");
 const $otherTitleInput = $("#other-title");
@@ -145,11 +148,11 @@ activities.addEventListener("change", e => {
                 input.parentElement.style.textDecoration = "none";
             } 
         })
-        }
+    }
     
     const checkedInputs = inputs.filter(input => input.checked);
     const total = checkedInputs.reduce((total, input)=> total + parseInt(input.dataset.price), 0);
-    
+
     /**
      * ! Deprecated
     let total = 0;
@@ -164,7 +167,7 @@ activities.addEventListener("change", e => {
         priceSpan.parentElement.style.display = "block";
 
         activities.querySelector(".err-text").style.display = "none"
-    priceSpan.textContent = `$ ${total}`;
+        priceSpan.textContent = `$ ${total}`;
     } else {
         priceSpan.parentElement.style.display = "none";
         
