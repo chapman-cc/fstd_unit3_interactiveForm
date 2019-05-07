@@ -21,12 +21,24 @@ $name.keyup(function () {
     }  
 })
 
-// TODO: Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example.
-// TODO: add red border and text
-// TODO: use keyup listener 
 
+/** Email validator */
+const $email = $("#mail");
+$email.prev().append('<span class="err-text" style="display: none;">This is not an Email</span>');
+$email.keyup(function () {
+    const val = $(this).val();
+    const regex = /[^@]+@[^@]+\.(com|net|org)/;
+    const isValid = regex.test(val);
+    const $span = $(this).prev().children();
 
-// JOB ROLE
+    if (isValid || val === "") {
+        $(this).removeClass("err-border");
+        $span.removeClass("err-text").hide();
+    } else {
+        $(this).addClass("err-border");
+        $span.addClass("err-text").show();
+    }  
+})
 
 const $titleInput = $("#title");
 const $otherTitleInput = $("#other-title");
