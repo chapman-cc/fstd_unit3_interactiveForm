@@ -97,7 +97,7 @@ $deisgn.change(function () {
 
 const activities = document.querySelector(".activities");
 activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>"; 
-const inputs = activities.querySelectorAll("input");
+const inputs = Array.from(activities.querySelectorAll("input"));
 const priceSpan = activities.querySelector(".activities-price");
 
 inputs.forEach(input=> { 
@@ -130,27 +130,34 @@ activities.addEventListener("change", e => {
      */
     
      if (target.checked){ 
-        for (let input of inputs) { 
+        inputs.forEach(input => {
             if ((input !== target) && (input.dataset.session === session)) {
                 input.disabled = true;
                 input.parentElement.style.textDecoration = "line-through";
             }
-        }
+        })
+
     } else {
-        for (let input of inputs) { 
+        inputs.forEach(input => {
             if (input.dataset.session === session) {
                 input.disabled = false;
                 input.parentElement.style.textDecoration = "none";
             } 
+        })
         }
-    }
     
+    const checkedInputs = inputs.filter(input => input.checked);
+    const total = checkedInputs.reduce((total, input)=> total + parseInt(input.dataset.price), 0);
+    
+    /**
+     * ! Deprecated
     let total = 0;
     inputs.forEach(input=> {
         if (input.checked) {
             total += parseInt(input.dataset.price);
         }
     })
+     */
 
     if (total) {
         priceSpan.parentElement.style.display = "block";
