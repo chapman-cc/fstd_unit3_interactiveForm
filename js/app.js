@@ -21,17 +21,18 @@ function showErrorBorder(input, isCorrect) {
  * @param {boolean} isCorrect is boolean value to determine if false
  * @param {string} message is optional conditional message
  */
-function showErrorMessage(span, isCorrect, text) {
+function showErrorMessage(textElement, isCorrect, text) {
     const message = text || null;
     if (isCorrect) {
-        span.removeClass("err-text").hide()
+        textElement.removeClass("err-text").hide()
     } else {
-        span.addClass("err-text").show()
+        textElement.addClass("err-text").show()
     }
 
     // if a message is present, change the span text
-    if (message)
-        span.text() = message;
+    if (message) {
+        textElement.text() = message;
+}
 }
 
 
