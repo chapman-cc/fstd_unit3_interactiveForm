@@ -98,22 +98,23 @@ $colorDiv.hide();
 
 $deisgn.change(function () {
     const tshirtCat = $(this).val();
-    const mid = $colorsArr.length/2
+    const mid = $colorsArr.length / 2
     
     $colorDiv.find("select").val(""); //reset <select> to blank
+    $colorsArr.each(function () { //reset all options 
         $(this).show();
     })
 
     if (tshirtCat === "js puns") {
         $colorDiv.slideDown();
-        $colorsArr.each( function(i) {
+        $colorsArr.each(function (i) {
             if (i >= mid) {
                 $(this).hide();
             }
         })
     } else if (tshirtCat === "heart js") {
         $colorDiv.slideDown();
-        $colorsArr.each( function(i) {
+        $colorsArr.each(function (i) {
             if (i < mid) {
                 $(this).hide();
             }
