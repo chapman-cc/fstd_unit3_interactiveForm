@@ -297,10 +297,9 @@ $paymentSelect.change(function () {
 })
 
 // TODO: If the selected payment option is "Credit Card," make sure the user has supplied a Credit Card number, a Zip Code, and a 3 number CVV value before the form can be submitted.
-$paymentSelect.change(function () {
-    if ($paymentSelect.val() === "credit card") {
-        const $errSpan = $('<p class="err-text" style="display: none; float: none; margin: 0">error message insert here</p>');
-        $creditCard.prepend($errSpan);
+
+const $credErrP = $('<span class="err-text" style="display: none;">error message insert here</span>');
+$creditCard.append($credErrP);
 
         $cardNo = $("#cc-num");
         $cardNo.keyup(function () {
@@ -309,17 +308,17 @@ $paymentSelect.change(function () {
             const isValid = regex.test(val);
             
             if (isValid) {
-                $(this).removeClass("err-border");
-                $errSpan.removeClass("err-text").hide();
-            } else if (!isValid && val === "") {
-                $errSpan.text("Please enter a credit card number.")
-                $errSpan.addClass("err-text").show();
+        $credErrP.removeClass("err-text").hide();
+    } else
+    if (!isValid && val === "") {
+        $credErrP.text("Please enter a credit card number.")
+        $credErrP.addClass("err-text").show();
             } else {
-                $(this).addClass("err-border");
-                $errSpan.text("Please enter a number that is between 13 and 16 digits long.")
-                $errSpan.addClass("err-text").show();
+        $credErrP.text("Please enter a number that is between 13 and 16 digits long.")
+        $credErrP.addClass("err-text").show();
             }
     showErrorBorder($(this), isValid)
+    // showErrorMessage(span, isCorrect, "Please enter a number that is between 13 and 16 digits long.")
         })
 
         $zipCode = $("#zip");
@@ -330,7 +329,7 @@ $paymentSelect.change(function () {
     const span = $credErrP;
             
     showErrorBorder($(this), isValid);
-    showErrorMessage(span, isValid, "Please enter a 5 digit zip code.")
+    showErrorMessage(span, isValid, "Please enter a 5 digit zip code.") // ? the text has problem here
         })
 
         $cvv = $("#cvv");
@@ -341,5 +340,7 @@ $paymentSelect.change(function () {
     const span = $credErrP;
             
     showErrorBorder($(this), isValid);
-    showErrorMessage(span, isValid, "Please enter a 3 digit security code.")
+    showErrorMessage(span, isValid, "Please enter a 3 digit security code.") // ? the text has problem here
+})
+
 })
