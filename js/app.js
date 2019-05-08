@@ -1,3 +1,41 @@
+// * --------------------
+// * FUNTIONS
+// * --------------------
+
+/**
+ * to show an red border on <input>, if passed in boolean is not correct
+ * @param {element} input is <input> element to be modify 
+ * @param {boolean} isCorrect is boolean value to determine if false
+ */
+function showErrorBorder(input, isCorrect) {
+    if (isCorrect) {
+        input.removeClass("err-border")
+    } else {
+        input.addClass("err-border")
+    }
+}
+
+/**
+ * to show an error message on <input>, if passed in boolean is not correct
+ * @param {element} input is <input> element to be modify 
+ * @param {boolean} isCorrect is boolean value to determine if false
+ * @param {string} message is optional conditional message
+ */
+function showErrorMessage(span, isCorrect, text) {
+    const message = text || null;
+    if (isCorrect) {
+        span.removeClass("err-text").hide()
+    } else {
+        span.addClass("err-text").show()
+    }
+
+    // if a message is present, change the span text
+    if (message)
+        span.text() = message;
+}
+
+
+
 //--------------------
 // BASIC INFO
 
@@ -28,16 +66,11 @@ $email.prev().append('<span class="err-text" style="display: none;">This is not 
 $email.keyup(function () {
     const val = $(this).val();
     const regex = /[^@]+@[^@]+\.(com|net|org)/;
-    const isValid = regex.test(val);
-    const $span = $(this).prev().children();
+    const isValid = regex.test(val) || val === "";
+    const $span = $emailErrSpan;
     
-    if (isValid || val === "") {
-        $(this).removeClass("err-border");
-        $span.removeClass("err-text").hide();
-    } else {
-        $(this).addClass("err-border");
-        $span.addClass("err-text").show();
-    }  
+    showErrorMessage($span, isValid);
+    showErrorBorder($(this), isValid);
 })
 
 
@@ -231,6 +264,7 @@ $paymentSelect.change(function () {
                 $errSpan.text("Please enter a number that is between 13 and 16 digits long.")
                 $errSpan.addClass("err-text").show();
             }
+    showErrorBorder($(this), isValid)
         })
 
         $zipCode = $("#zip");
@@ -238,15 +272,10 @@ $paymentSelect.change(function () {
             const val = $(this).val();
             const regex = /\d{5}/g;
             const isValid = regex.test(val);
+    const span = $credErrP;
             
-            if (isValid) {
-                $(this).removeClass("err-border");
-                $errSpan.removeClass("err-text").hide();
-            } else {
-                $(this).addClass("err-border");
-                $errSpan.text("Please enter a 5 digit zip code.")
-                $errSpan.addClass("err-text").show();
-            }
+    showErrorBorder($(this), isValid);
+    showErrorMessage(span, isValid, "Please enter a 5 digit zip code.")
         })
 
         $cvv = $("#cvv");
@@ -254,15 +283,8 @@ $paymentSelect.change(function () {
             const val = $(this).val();
             const regex = /\d{3}/g;
             const isValid = regex.test(val);
+    const span = $credErrP;
             
-            if (isValid) {
-                $(this).removeClass("err-border");
-                $errSpan.removeClass("err-text").hide();
-            } else {
-                $(this).addClass("err-border");
-                $errSpan.text("Please enter a 3 digit security code.")
-                $errSpan.addClass("err-text").show();
-            }
-        })
-    }
+    showErrorBorder($(this), isValid);
+    showErrorMessage(span, isValid, "Please enter a 3 digit security code.")
 })
