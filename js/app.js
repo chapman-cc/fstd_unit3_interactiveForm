@@ -173,7 +173,7 @@ $deisgn.change(function () {
 
 
 const activities = document.querySelector(".activities");
-activities.firstElementChild.innerHTML+='<span class="err-text" style="display: none;">Select at least 1 activities</span>';
+activities.innerHTML += "<span class='err-text' style='display: none;'>Select at least 1 activities</span>";
 activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>"; 
 const inputs = Array.from(activities.querySelectorAll("input"));
 const priceSpan = activities.querySelector(".activities-price");
