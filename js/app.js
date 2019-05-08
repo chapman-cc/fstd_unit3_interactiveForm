@@ -202,16 +202,17 @@ activities.addEventListener("change", e => {
      *   3) if total === 0, hide the span;
      */
 
+    const checkedInputs = inputs.filter(input => input.checked);
+    const total = checkedInputs.reduce((total, input) => total + parseInt(input.dataset.price), 0);
+    priceSpan.textContent = `$ ${total}`;
+    let errTextDisplay = activities.querySelector(".err-text");    
+
     if (total) {
         priceSpan.parentElement.style.display = "block";
-
-        activities.querySelector(".err-text").style.display = "none"
-        priceSpan.textContent = `$ ${total}`;
+        errTextDisplay.style.display = "none";
     } else {
         priceSpan.parentElement.style.display = "none";
-        
-        activities.querySelector(".err-text").style.display = "block"
-        priceSpan.textContent = `$ ${total}`;
+        errTextDisplay.style.display = "block";
     }
 })
 
