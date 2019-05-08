@@ -194,6 +194,14 @@ activities.addEventListener("change", e => {
     })
      */
 
+    /**
+     * the following calculate total price
+     *   1) filter out activities that are checked
+     *   2) accumulate total cost of checked input activities
+     *   3) if total > 0, show the span text and show total 
+     *   3) if total === 0, hide the span;
+     */
+
     if (total) {
         priceSpan.parentElement.style.display = "block";
 
