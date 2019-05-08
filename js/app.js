@@ -229,8 +229,6 @@ activities.addEventListener("change", e => {
         })
     }
     
-    const checkedInputs = inputs.filter(input => input.checked);
-    const total = checkedInputs.reduce((total, input)=> total + parseInt(input.dataset.price), 0);
 
     /**
      * ! Deprecated
