@@ -343,4 +343,11 @@ $creditCard.append($credErrP);
     showErrorMessage(span, isValid, "Please enter a 3 digit security code.") // ? the text has problem here
 })
 
+//--------------------
+// SUBMITION
+
+$("[type='submit']").click(function(e) {
+    e.preventDefault();
+
+    
 })
