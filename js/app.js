@@ -35,7 +35,20 @@ function showErrorMessage(element, isCorrect, text) {
 }
 }
 
+// * --------------------
+// * REGEX
+// * --------------------
 
+const regexLib = {
+    name: /^\w+\s?(\w+)?$/i, //e.g. John Smith
+    email: /[^@]+@[^@]+\.(com|net|org)/, // e.g. someone@email.com
+    session: /\d{1,2}(am|pm)\s*-\s*\d{1,2}(am|pm)/i, // e.g. 12pm - 16pm
+    price: /\d+\.?\d{2}/, 
+    day: /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i, // Mon | wednesday
+    creditCard: /^\d{13,16}$/g,
+    zip: /^\d{5}$/,
+    credCVV: /^\d{3}$/g
+}
 
 //--------------------
 // BASIC INFO
@@ -48,7 +61,7 @@ const $nameErrSpan = $('<span class="err-text" style="display: none;">Name Canno
 $name.after($nameErrSpan);
 $name.keyup(function () {
     const val = $(this).val();
-    const regex = new RegExp("^\\w+\\s?(\\w+)?$", "i");
+    const regex = regexLib.name;
     const isValid = regex.test(val);
     const $span = $nameErrSpan;
     
@@ -63,7 +76,7 @@ const $emailErrSpan = $('<span class="err-text" style="display: none;">This is n
 $email.after($emailErrSpan);
 $email.keyup(function () {
     const val = $(this).val();
-    const regex = /[^@]+@[^@]+\.(com|net|org)/;
+    const regex = regexLib.email;
     const isValid = regex.test(val) || val === "";
     const $span = $emailErrSpan;
     
@@ -168,9 +181,9 @@ const priceSpan = activities.querySelector(".activities-price");
 inputs.forEach(input => {
     /** add dataset value: session and price, to <input> for conditioning */
     const labelText = input.parentElement.textContent;
-    const sessionRegex = /\d{1,2}(am|pm)-\d{1,2}(am|pm)/;
-    const priceRegex = /\d+\.?\d{2}/;
-    const dayRegex = /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i;
+    const sessionRegex = regexLib.session;
+    const priceRegex = regexLib.price;
+    const dayRegex = regexLib.day;
 
     if (sessionRegex.test(labelText)) 
         input.dataset.session = sessionRegex.exec(labelText)[0];
@@ -292,7 +305,7 @@ $paymentSelect.change(function () {
         $cardNo = $("#cc-num");
         $cardNo.keyup(function () {
             const val = $(this).val();
-            const regex = /\d{13,16}/g;
+    const regex = regexLib.creditCard;
             const isValid = regex.test(val);
             
             if (isValid) {
@@ -312,7 +325,7 @@ $paymentSelect.change(function () {
         $zipCode = $("#zip");
         $zipCode.keyup(function () {
             const val = $(this).val();
-            const regex = /\d{5}/g;
+    const regex = regexLib.zip;
             const isValid = regex.test(val);
     const span = $credErrP;
             
@@ -323,7 +336,7 @@ $paymentSelect.change(function () {
         $cvv = $("#cvv");
         $cvv.keyup(function () {
             const val = $(this).val();
-            const regex = /\d{3}/g;
+    const regex = regexLib.credCVV;
             const isValid = regex.test(val);
     const span = $credErrP;
             
