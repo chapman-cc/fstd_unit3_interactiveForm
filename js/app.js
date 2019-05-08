@@ -321,8 +321,8 @@ $creditCard.append($credErrP);
     // showErrorMessage(span, isCorrect, "Please enter a number that is between 13 and 16 digits long.")
         })
 
-        $zipCode = $("#zip");
-        $zipCode.keyup(function () {
+$zip = $("#zip");
+$zip.keyup(function () {
             const val = $(this).val();
     const regex = regexLib.zip;
             const isValid = regex.test(val);
