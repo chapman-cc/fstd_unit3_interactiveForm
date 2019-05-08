@@ -45,9 +45,9 @@ const regexLib = {
     session: /\d{1,2}(am|pm)\s*-\s*\d{1,2}(am|pm)/i, // e.g. 12pm - 16pm
     price: /\d+\.?\d{2}/, 
     day: /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i, // Mon | wednesday
-    creditCard: /^\d{13,16}$/g,
+    cardNo: /^\d{13,16}$/g,
     zip: /^\d{5}$/,
-    credCVV: /^\d{3}$/g
+    cvv: /^\d{3}$/g
 }
 
 //--------------------
@@ -304,7 +304,7 @@ $creditCard.append($credErrP);
         $cardNo = $("#cc-num");
         $cardNo.keyup(function () {
             const val = $(this).val();
-    const regex = regexLib.creditCard;
+    const regex = regexLib.cardNo;
             const isValid = regex.test(val);
             
             if (isValid) {
@@ -335,7 +335,7 @@ $creditCard.append($credErrP);
         $cvv = $("#cvv");
         $cvv.keyup(function () {
             const val = $(this).val();
-    const regex = regexLib.credCVV;
+    const regex = regexLib.cvv;
             const isValid = regex.test(val);
     const span = $credErrP;
             
