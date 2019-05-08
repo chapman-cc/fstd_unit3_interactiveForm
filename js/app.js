@@ -44,20 +44,16 @@ const $name = $("#name")
 $name.focus();
 
 /** Name validator */
-$name.prev().append('<span class="err-text" style="display: none;">Name Cannot Be Empty</span>');
+const $nameErrSpan = $('<span class="err-text" style="display: none;">Name Cannot Be Empty</span>')
+$name.after($nameErrSpan);
 $name.keyup(function () {
     const val = $(this).val();
     const regex = new RegExp("^\\w+\\s?(\\w+)?$", "i");
     const isValid = regex.test(val);
-    const $span = $(this).prev().children();
+    const $span = $nameErrSpan;
     
-    if (!isValid) {
-        $(this).addClass("err-border");
-        $span.addClass("err-text").show();
-    } else {
-        $(this).removeClass("err-border");
-        $span.removeClass("err-text").hide();
-    }  
+    showErrorMessage($span, isValid);
+    showErrorBorder($(this), isValid);
 })
 
 
