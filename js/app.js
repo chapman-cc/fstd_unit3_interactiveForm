@@ -135,23 +135,28 @@ activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span cla
 const inputs = Array.from(activities.querySelectorAll("input"));
 const priceSpan = activities.querySelector(".activities-price");
 
-inputs.forEach(input=> { 
+inputs.forEach(input => {
     /** add dataset value: session and price, to <input> for conditioning */
     const labelText = input.parentElement.textContent;
     const sessionRegex = /\d{1,2}(am|pm)-\d{1,2}(am|pm)/;
     const priceRegex = /\d+\.?\d{2}/;
+    const dayRegex = /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i;
 
     if (sessionRegex.test(labelText)) 
         input.dataset.session = sessionRegex.exec(labelText)[0];
 
     if (priceRegex.test(labelText))
         input.dataset.price = priceRegex.exec(labelText)[0];
+
+    if (dayRegex.test(labelText))
+        input.dataset.day = dayRegex.exec(labelText)[0];
 })
 
 
 activities.addEventListener("change", e => {
     const target = e.target;
     const session = target.dataset.session;
+    const day = target.dataset.day;
     
     /**
      * This checks 
@@ -164,9 +169,9 @@ activities.addEventListener("change", e => {
      *  6) it re-enabled all inputs with same session;
      */
     
-     if (target.checked){ 
+    if (target.checked) {
         inputs.forEach(input => {
-            if ((input !== target) && (input.dataset.session === session)) {
+            if ((input !== target) && (input.dataset.session === session) && (input.dataset.day === day)) {
                 input.disabled = true;
                 input.parentElement.style.textDecoration = "line-through";
             }
