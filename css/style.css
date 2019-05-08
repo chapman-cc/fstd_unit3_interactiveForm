@@ -185,7 +185,7 @@ button:hover {
 ==================================== */
 
 .err-text {
-	display: inline-block;
+	display: block;
 	color: #c10101;
 	margin-bottom: 1em;
 }
