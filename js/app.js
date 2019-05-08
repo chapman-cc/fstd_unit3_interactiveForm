@@ -59,7 +59,8 @@ $name.keyup(function () {
 
 /** Email validator */
 const $email = $("#mail");
-$email.prev().append('<span class="err-text" style="display: none;">This is not an Email</span>');
+const $emailErrSpan = $('<span class="err-text" style="display: none;">This is not an Email</span>');
+$email.after($emailErrSpan);
 $email.keyup(function () {
     const val = $(this).val();
     const regex = /[^@]+@[^@]+\.(com|net|org)/;
