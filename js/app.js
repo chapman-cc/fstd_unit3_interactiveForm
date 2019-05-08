@@ -100,7 +100,7 @@ $deisgn.change(function () {
     const tshirtCat = $(this).val();
     const mid = $colorsArr.length/2
     
-    $colorsArr.each( function() { //reset all options 
+    $colorDiv.find("select").val(""); //reset <select> to blank
         $(this).show();
     })
 
