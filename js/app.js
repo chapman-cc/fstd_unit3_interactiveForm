@@ -22,7 +22,7 @@ function showErrorBorder(input, isCorrect) {
  * @param {string} message is optional conditional message
  */
 function showErrorMessage(element, isCorrect, text) {
-    const message = text || null;
+    // const message = text || 0;
     if (isCorrect) {
         element.removeClass("err-text").hide()
     } else {
@@ -30,8 +30,8 @@ function showErrorMessage(element, isCorrect, text) {
     }
 
     // if a message is present, change the span text
-    if (message) {
-        element.text() = message;
+    if (text) {
+        element.text() = text;
 }
 }
 
