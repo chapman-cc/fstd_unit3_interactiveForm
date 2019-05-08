@@ -344,10 +344,58 @@ $zip.keyup(function () {
 })
 
 //--------------------
-// SUBMITION
+// SUBMISSION VALIDATION
+const $submit = $("[type='submit']");
+const $formErr = $('<span class="err-text" style="display: none">There\'s something wrong with the form.</span>');
+$submit.after($formErr)
 
-$("[type='submit']").click(function(e) {
+$("form").submit(function(e) {
     e.preventDefault();
 
+    const nameValid = regexLib.name.test($name.val());
+    const emailValid = regexLib.email.test($email.val());
+    const actValid = $(".activities input:checked").length > 0;
     
+    const isCreditCard = $paymentSelect.val() === "credit card";
+    const cardNumValid = regexLib.cardNo.test($cardNo.val()); // ? is giving me false 
+    const zipValid = regexLib.zip.test($zip.val());
+	const ccvValid = regexLib.cvv.test($cvv.val());
+	
+	// if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
+	const creditCardOK = isCreditCard ? cardNumValid && zipValid && ccvValid : true;
+
+	const formValid =
+		nameValid && 
+		emailValid && 
+		actValid && 
+		creditCardOK;
+    
+    console.log(`
+        nameValid: ${nameValid},
+        emailValid: ${emailValid},
+        isCreditCard: ${isCreditCard},
+        cardNumValid: ${cardNumValid}, ${$cardNo.val()},
+        zipValid: ${zipValid},
+        ccvValid: ${ccvValid},
+		creditCardOK: ${creditCardOK},
+		formValid: ${formValid},
+		
+    `);
+    
+	if (formValid) {
+		$submit.css("backgroundColor", "#22627e");
+		$submit.text("Register");
+		$formErr.css("display", "none");
+		
+		/** resubmit code from https://stackoverflow.com/questions/1164132/how-to-reenable-event-preventdefault/1164177#1164177 */
+		$(this).unbind('submit').submit();
+	} else {
+		$submit.css("backgroundColor", "#c10101");
+		$submit.text("Re-submit");
+		$formErr.css("display", "block")
+	}
 })
+
+
+
+console.log("Man... I rather use vanilla JavaScript for this project, ")
