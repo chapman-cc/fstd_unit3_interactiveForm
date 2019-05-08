@@ -128,7 +128,36 @@ $deisgn.change(function () {
 //--------------------
 // Registry
 
-// const $activitiesArray = $(".activities label");
+/**
+ * ! Deprecated, jQuery $(this) delegation is not working as I wanted
+ */
+// const $activities = $(".activities");
+// const $priceSpan = $("<span class='err-text' style='display: block;'>Select at least 1 activities</span>");
+// const $inputs = $activities.find("input");
+// $inputs.each(function () {
+
+//     const labelText = $(this).parent().text();
+//     const sessionRegex = /\d{1,2}(am|pm)-\d{1,2}(am|pm)/;
+//     const priceRegex = /\d+\.?\d{2}/;
+
+//     if (sessionRegex.test(labelText)){ 
+//         const session = sessionRegex.exec(labelText)[0];
+//         $(this).attr("data-session", session);
+//     }
+//     if (priceRegex.test(labelText)) {
+//         const price = priceRegex.exec(labelText)[0];
+//         $(this).attr("data-price", price)
+//     }
+// })
+
+// $activities.change("input", function (e) {
+//     const $input = $(this);
+//     const session = e.target.dataset.session;
+//     console.log($input, session);
+
+
+// })
+
 
 const activities = document.querySelector(".activities");
 activities.firstElementChild.innerHTML+='<span class="err-text" style="display: none;">Select at least 1 activities</span>';
