@@ -45,9 +45,9 @@ const regexLib = {
     session: /\d{1,2}(am|pm)\s*-\s*\d{1,2}(am|pm)/i, // e.g. 12pm - 16pm
     price: /\d+\.?\d{2}/, 
     day: /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i, // Mon | wednesday
-    cardNo: /^\d{13,16}$/g,
+    cardNo: /^\d{13,16}$/,
     zip: /^\d{5}$/,
-    cvv: /^\d{3}$/g
+    cvv: /^\d{3}$/
 }
 
 //--------------------
