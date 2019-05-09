@@ -31,7 +31,7 @@ function showErrorMessage(element, isCorrect, text) {
 
     // if a message is present, change the span text
     if (text) {
-        element.text() = text;
+        element.text(text);
 }
 }
 
