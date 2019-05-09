@@ -299,7 +299,7 @@ $paymentSelect.change(function () {
 const $credErrP = $('<span class="err-text" style="display: none;">error message insert here</span>');
 $creditCard.append($credErrP);
 
-        $cardNo = $("#cc-num");
+const $cardNo = $("#cc-num");
         $cardNo.keyup(function () {
             const val = $(this).val();
     const regex = regexLib.cardNo;
@@ -319,7 +319,7 @@ $creditCard.append($credErrP);
     // showErrorMessage(span, isCorrect, "Please enter a number that is between 13 and 16 digits long.")
         })
 
-$zip = $("#zip");
+const $zip = $("#zip");
 $zip.keyup(function () {
             const val = $(this).val();
     const regex = regexLib.zip;
@@ -330,7 +330,7 @@ $zip.keyup(function () {
     showErrorMessage(span, isValid, "Please enter a 5 digit zip code.") // ? the text has problem here
         })
 
-        $cvv = $("#cvv");
+const $cvv = $("#cvv");
         $cvv.keyup(function () {
             const val = $(this).val();
     const regex = regexLib.cvv;
@@ -356,29 +356,17 @@ $("form").submit(function(e) {
     
     const isCreditCard = $paymentSelect.val() === "credit card";
     const cardNumValid = regexLib.cardNo.test($cardNo.val()); // ? is giving me false 
-    const zipValid = regexLib.zip.test($zip.val());
-	const ccvValid = regexLib.cvv.test($cvv.val());
-	
-	// if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
-	const creditCardOK = isCreditCard ? cardNumValid && zipValid && ccvValid : true;
-
-	const formValid =
-		nameValid && 
-		emailValid && 
-		actValid && 
-		creditCardOK;
     
-    console.log(`
-        nameValid: ${nameValid},
-        emailValid: ${emailValid},
-        isCreditCard: ${isCreditCard},
-        cardNumValid: ${cardNumValid}, ${$cardNo.val()},
-        zipValid: ${zipValid},
-        ccvValid: ${ccvValid},
-		creditCardOK: ${creditCardOK},
-		formValid: ${formValid},
-		
-    `);
+    const zipValid = regexLib.zip.test($zip.val());
+    // console.log(zipValid);
+	
+    const cvvValid = regexLib.cvv.test($cvv.val());
+    // console.log(cvvValid)
+
+	// if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
+    const creditPass = isCreditCard ? cardNumValid && zipValid && cvvValid : true;
+
+    const formValid = nameValid && emailValid && actValid && creditPass;
     
 	if (formValid) {
 		$submit.css("backgroundColor", "#22627e");
