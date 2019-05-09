@@ -32,7 +32,7 @@ function showErrorMessage(element, isCorrect, text) {
     // if a message is present, change the span text
     if (text) {
         element.text(text);
-}
+    }
 }
 
 // * --------------------
@@ -43,7 +43,7 @@ const regexLib = {
     name: /^\w+\s?(\w+)?$/i, //e.g. John Smith
     email: /[^@]+@[^@]+\.(com|net|org)/, // e.g. someone@email.com
     session: /\d{1,2}(am|pm)\s*-\s*\d{1,2}(am|pm)/i, // e.g. 12pm - 16pm
-    price: /\d+\.?\d{2}/, 
+    price: /\d+\.?\d{2}/,
     day: /(sun|mon|tues?|wed(nes)?|thurs?|fri|sat(ur)?)(day)?/i, // Mon | wednesday
     cardNo: /^\d{13,16}$/,
     zip: /^\d{5}$/,
@@ -64,7 +64,7 @@ $name.keyup(function () {
     const regex = regexLib.name;
     const isValid = regex.test(val);
     const $span = $nameErrSpan;
-    
+
     showErrorMessage($span, isValid);
     showErrorBorder($(this), isValid);
 })
@@ -79,7 +79,7 @@ $email.keyup(function () {
     const regex = regexLib.email;
     const isValid = regex.test(val) || val === "";
     const $span = $emailErrSpan;
-    
+
     showErrorMessage($span, isValid);
     showErrorBorder($(this), isValid);
 })
@@ -112,7 +112,7 @@ $colorDiv.hide();
 $deisgn.change(function () {
     const tshirtCat = $(this).val();
     const mid = $colorsArr.length / 2
-    
+
     $colorDiv.find("select").val(""); //reset <select> to blank
     $colorsArr.each(function () { //reset all options 
         $(this).show();
@@ -134,7 +134,7 @@ $deisgn.change(function () {
         })
     } else {
         $colorDiv.slideUp();
-        
+
     }
 })
 
@@ -174,7 +174,7 @@ $deisgn.change(function () {
 
 const activities = document.querySelector(".activities");
 activities.innerHTML += "<span class='err-text' style='display: none;'>Select at least 1 activities</span>";
-activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>"; 
+activities.innerHTML += "<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>";
 const inputs = Array.from(activities.querySelectorAll("input"));
 const priceSpan = activities.querySelector(".activities-price");
 
@@ -185,7 +185,7 @@ inputs.forEach(input => {
     const priceRegex = regexLib.price;
     const dayRegex = regexLib.day;
 
-    if (sessionRegex.test(labelText)) 
+    if (sessionRegex.test(labelText))
         input.dataset.session = sessionRegex.exec(labelText)[0];
 
     if (priceRegex.test(labelText))
@@ -200,7 +200,7 @@ activities.addEventListener("change", e => {
     const target = e.target;
     const session = target.dataset.session;
     const day = target.dataset.day;
-    
+
     /**
      * This checks 
      *  1) if user checked an input
@@ -211,7 +211,7 @@ activities.addEventListener("change", e => {
      *  5) if user unchecked an input 
      *  6) it re-enabled all inputs with same session;
      */
-    
+
     if (target.checked) {
         inputs.forEach(input => {
             if ((input !== target) && (input.dataset.session === session) && (input.dataset.day === day)) {
@@ -225,10 +225,10 @@ activities.addEventListener("change", e => {
             if (input.dataset.session === session) {
                 input.disabled = false;
                 input.parentElement.style.textDecoration = "none";
-            } 
+            }
         })
     }
-    
+
 
     /**
      * ! Deprecated
@@ -251,7 +251,7 @@ activities.addEventListener("change", e => {
     const checkedInputs = inputs.filter(input => input.checked);
     const total = checkedInputs.reduce((total, input) => total + parseInt(input.dataset.price), 0);
     priceSpan.textContent = `$ ${total}`;
-    let errTextDisplay = activities.querySelector(".err-text");    
+    let errTextDisplay = activities.querySelector(".err-text");
 
     if (total) {
         priceSpan.parentElement.style.display = "block";
@@ -291,7 +291,7 @@ $paymentSelect.change(function () {
         $creditCard.slideUp();
         $paypal.slideUp();
         $bitcoin.slideDown();
-    } 
+    }
 })
 
 // TODO: If the selected payment option is "Credit Card," make sure the user has supplied a Credit Card number, a Zip Code, and a 3 number CVV value before the form can be submitted.
@@ -300,43 +300,43 @@ const $credErrP = $('<span class="err-text" style="display: none;">error message
 $creditCard.append($credErrP);
 
 const $cardNo = $("#cc-num");
-        $cardNo.keyup(function () {
-            const val = $(this).val();
+$cardNo.keyup(function () {
+    const val = $(this).val();
     const regex = regexLib.cardNo;
-            const isValid = regex.test(val);
-            
-            if (isValid) {
+    const isValid = regex.test(val);
+
+    if (isValid) {
         $credErrP.removeClass("err-text").hide();
     } else
     if (!isValid && val === "") {
         $credErrP.text("Please enter a credit card number.")
         $credErrP.addClass("err-text").show();
-            } else {
+    } else {
         $credErrP.text("Please enter a number that is between 13 and 16 digits long.")
         $credErrP.addClass("err-text").show();
-            }
+    }
     showErrorBorder($(this), isValid)
     // showErrorMessage(span, isCorrect, "Please enter a number that is between 13 and 16 digits long.")
-        })
+})
 
 const $zip = $("#zip");
 $zip.keyup(function () {
-            const val = $(this).val();
+    const val = $(this).val();
     const regex = regexLib.zip;
-            const isValid = regex.test(val);
+    const isValid = regex.test(val);
     const span = $credErrP;
-            
+
     showErrorBorder($(this), isValid);
     showErrorMessage(span, isValid, "Please enter a 5 digit zip code.") // ? the text has problem here
-        })
+})
 
 const $cvv = $("#cvv");
-        $cvv.keyup(function () {
-            const val = $(this).val();
+$cvv.keyup(function () {
+    const val = $(this).val();
     const regex = regexLib.cvv;
-            const isValid = regex.test(val);
+    const isValid = regex.test(val);
     const span = $credErrP;
-            
+
     showErrorBorder($(this), isValid);
     showErrorMessage(span, isValid, "Please enter a 3 digit security code.") // ? the text has problem here
 })
@@ -347,39 +347,39 @@ const $submit = $("[type='submit']");
 const $formErr = $('<span class="err-text" style="display: none">There\'s something wrong with the form.</span>');
 $submit.after($formErr)
 
-$("form").submit(function(e) {
+$("form").submit(function (e) {
     e.preventDefault();
 
     const nameValid = regexLib.name.test($name.val());
     const emailValid = regexLib.email.test($email.val());
     const actValid = $(".activities input:checked").length > 0;
-    
+
     const isCreditCard = $paymentSelect.val() === "credit card";
     const cardNumValid = regexLib.cardNo.test($cardNo.val()); // ? is giving me false 
     
     const zipValid = regexLib.zip.test($zip.val());
     // console.log(zipValid);
-	
+
     const cvvValid = regexLib.cvv.test($cvv.val());
     // console.log(cvvValid)
 
-	// if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
+    // if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
     const creditPass = isCreditCard ? cardNumValid && zipValid && cvvValid : true;
 
     const formValid = nameValid && emailValid && actValid && creditPass;
-    
-	if (formValid) {
-		$submit.css("backgroundColor", "#22627e");
-		$submit.text("Register");
-		$formErr.css("display", "none");
-		
-		/** resubmit code from https://stackoverflow.com/questions/1164132/how-to-reenable-event-preventdefault/1164177#1164177 */
-		$(this).unbind('submit').submit();
-	} else {
-		$submit.css("backgroundColor", "#c10101");
-		$submit.text("Re-submit");
-		$formErr.css("display", "block")
-	}
+
+    if (formValid) {
+        $submit.css("backgroundColor", "#22627e");
+        $submit.text("Register");
+        $formErr.css("display", "none");
+
+        /** resubmit code from https://stackoverflow.com/questions/1164132/how-to-reenable-event-preventdefault/1164177#1164177 */
+        $(this).unbind('submit').submit();
+    } else {
+        $submit.css("backgroundColor", "#c10101");
+        $submit.text("Re-submit");
+        $formErr.css("display", "block")
+    }
 })
 
 
