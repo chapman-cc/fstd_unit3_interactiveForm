@@ -63,9 +63,8 @@ $name.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.name;
     const isValid = regex.test(val);
-    const $span = $nameErrSpan;
 
-    showErrorMessage($span, isValid);
+    showErrorMessage($nameErrSpan, isValid);
     showErrorBorder($(this), isValid);
 })
 
@@ -78,9 +77,8 @@ $email.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.email;
     const isValid = regex.test(val) || val === "";
-    const $span = $emailErrSpan;
 
-    showErrorMessage($span, isValid);
+    showErrorMessage($emailErrSpan, isValid);
     showErrorBorder($(this), isValid);
 })
 
@@ -346,10 +344,9 @@ $zip.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.zip;
     const isValid = regex.test(val);
-    const span = $credErrP;
 
     showErrorBorder($(this), isValid);
-    showErrorMessage(span, isValid, "Please enter a 5 digit zip code.") // ? the text has problem here
+    showErrorMessage($credErrP, isValid, "Please enter a 5 digit zip code.") 
 })
 
 const $cvv = $("#cvv");
@@ -357,10 +354,9 @@ $cvv.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.cvv;
     const isValid = regex.test(val);
-    const span = $credErrP;
 
     showErrorBorder($(this), isValid);
-    showErrorMessage(span, isValid, "Please enter a 3 digit security code.") // ? the text has problem here
+    showErrorMessage($credErrP, isValid, "Please enter a 3 digit security code.") 
 })
 
 //--------------------
