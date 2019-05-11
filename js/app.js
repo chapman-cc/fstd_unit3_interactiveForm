@@ -166,6 +166,7 @@ $deisgn.change(function () {
 // })
 
 // $activities.change("input", function (e) {
+//     // * total cost calculator
 //     let total = 0;
 //     $(".activities input:checked").each(function (){
 //         total += parseInt($(this).attr("data-price"));        
@@ -177,6 +178,18 @@ $deisgn.change(function () {
 //         $priceSpan.slideUp()
 //         $priceSpan.delay(1000).find("span").text(0);
 //     }
+    
+//     // * disable checkbox feature
+//     const name = e.target.name;
+//     const day = e.target.dataset.day;
+//     const session = e.target.dataset.session;
+
+//     console.log()
+//     $(`input[data-session='${session}'][data-day='${day}']`).each(function(){
+//         if ($(this).attr("name") !== name){
+//             $(this).prop("checked", true)
+//         }
+//     })
     
 // })
 
