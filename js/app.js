@@ -5,10 +5,10 @@
 /**
  * to show an red border on <input>, if passed in boolean is not correct
  * @param {element} input is <input> element to be modify 
- * @param {boolean} isCorrect is boolean value to determine if false
+ * @param {boolean} isValid is boolean value to determine if false
  */
-function showErrorBorder(input, isCorrect) {
-    if (isCorrect) {
+function showErrorBorder(input, isValid) {
+    if (isValid) {
         input.removeClass("err-border")
     } else {
         input.addClass("err-border")
@@ -18,12 +18,12 @@ function showErrorBorder(input, isCorrect) {
 /**
  * to show an error message on <input>, if passed in boolean is not correct
  * @param {element} input is <input> element to be modify 
- * @param {boolean} isCorrect is boolean value to determine if false
+ * @param {boolean} isValid is boolean value to determine if false
  * @param {string} message is optional conditional message
  */
-function showErrorMessage(element, isCorrect, text) {
+function showErrorMessage(element, isValid, text) {
     // const message = text || 0;
-    if (isCorrect) {
+    if (isValid) {
         element.removeClass("err-text").hide()
     } else {
         element.addClass("err-text").show()
@@ -64,8 +64,7 @@ $name.keyup(function () {
     const regex = regexLib.name;
     const isValid = regex.test(val);
     
-    showErrorMessage($nameErrSpan, isValid);
-    showErrorBorder($(this), isValid);
+    showError($(this), $nameErrSpan, isValid);
 })
 
 
@@ -78,8 +77,7 @@ $email.keyup(function () {
     const regex = regexLib.email;
     const isValid = regex.test(val) || val === "";
 
-    showErrorMessage($emailErrSpan, isValid);
-    showErrorBorder($(this), isValid);
+    showError($(this), $emailErrSpan, isValid);
 })
 
 
