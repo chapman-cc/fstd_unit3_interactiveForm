@@ -142,10 +142,12 @@ $deisgn.change(function () {
 // Registry
 
 /**
- * ! Deprecated, jQuery $(this) delegation is not working as I wanted
+ * ! Deprecated, jQuery event delegation is not working as I wanted
  */
 // const $activities = $(".activities");
-// const $priceSpan = $("<span class='err-text' style='display: block;'>Select at least 1 activities</span>");
+// const $activitiesErrSpan = $("<span class='err-text' style='display: none;'>Select at least 1 activities</span>");
+// const $priceSpan = $("<p style='display: none;'><b>Total Price: </b><span class='activities-price'>0</span></p>");
+// $activities.append($activitiesErrSpan).append($priceSpan)
 // const $inputs = $activities.find("input");
 // $inputs.each(function () {
 
@@ -164,11 +166,18 @@ $deisgn.change(function () {
 // })
 
 // $activities.change("input", function (e) {
-//     const $input = $(this);
-//     const session = e.target.dataset.session;
-//     console.log($input, session);
-
-
+//     let total = 0;
+//     $(".activities input:checked").each(function (){
+//         total += parseInt($(this).attr("data-price"));        
+//     })
+//     if (total) {
+//         $priceSpan.find("span").text(total);
+//         $priceSpan.slideDown()
+//     } else {
+//         $priceSpan.slideUp()
+//         $priceSpan.delay(1000).find("span").text(0);
+//     }
+    
 // })
 
 
