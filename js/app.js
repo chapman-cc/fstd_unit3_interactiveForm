@@ -405,14 +405,24 @@ $("form").submit(function (e) {
 
         showErrorMessage($(".activities .err-text"), actValid);
 
-        showErrorBorder($cardNo, cardNumValid);
-        showErrorMessage($cardNo, cardNumValid, "Please re-enter your card no.");
 
+        showErrorBorder($cardNo, cardNoValid);
         showErrorBorder($zip, zipValid);
-        showErrorMessage($credErrP, zipValid, "Please enter a 5 digit zip code.");
-        
         showErrorBorder($cvv, cvvValid);
-        showErrorMessage($credErrP, cvvValid, "Please enter a 3 digit security code.");
+
+        let creditCardErrText = [];
+        if (!cardNoValid) {
+            creditCardErrText.push("credit card number");
+        } 
+        if (!zipValid) {
+            creditCardErrText.push("zip code");
+        }
+        if (!cvvValid) {
+            creditCardErrText.push("security code");
+        }
+        
+        showErrorMessage($credErrP, creditCardValid, `The following credit card info has error: ${creditCardErrText.toString().replace(",", ", ")}`);
+        
     }
 })
 
