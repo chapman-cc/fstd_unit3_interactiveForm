@@ -140,7 +140,7 @@ $deisgn.change(function () {
 // Registry
 
 /**
- * ! Deprecated, jQuery event delegation is not working as I wanted
+ * ! Deprecated, jQuery $(this) delegation is not working as I wanted
  */
 // const $activities = $(".activities");
 // const $activitiesErrSpan = $("<span class='err-text' style='display: none;'>Select at least 1 activities</span>");
@@ -373,10 +373,9 @@ $("form").submit(function (e) {
     const actValid = $(".activities input:checked").length > 0;
 
     const isCreditCard = $paymentSelect.val() === "credit card";
-    const cardNumValid = regexLib.cardNo.test($cardNo.val()); // ? is giving me false 
+    const cardNumValid = regexLib.cardNo.test($cardNo.val());  
     
     const zipValid = regexLib.zip.test($zip.val());
-    // console.log(zipValid);
 
     const cvvValid = regexLib.cvv.test($cvv.val());
     // console.log(cvvValid)
