@@ -68,7 +68,7 @@ $name.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.name;
     const isValid = regex.test(val);
-    
+
     showError($(this), $nameErrSpan, isValid);
 })
 
@@ -135,7 +135,6 @@ $deisgn.change(function () {
         })
     } else {
         $colorDiv.slideUp();
-
     }
 })
 
@@ -179,7 +178,7 @@ $deisgn.change(function () {
 //         $priceSpan.slideUp()
 //         $priceSpan.delay(1000).find("span").text(0);
 //     }
-    
+
 //     // * disable checkbox feature
 //     const name = e.target.name;
 //     const day = e.target.dataset.day;
@@ -191,7 +190,7 @@ $deisgn.change(function () {
 //             $(this).prop("checked", true)
 //         }
 //     })
-    
+
 // })
 
 
@@ -376,16 +375,16 @@ $("form").submit(function (e) {
     const actValid = $(".activities input:checked").length > 0;
 
     const isCreditCard = $paymentSelect.val() === "credit card";
-    const cardNumValid = regexLib.cardNo.test($cardNo.val());  
-    
+    const cardNoValid = regexLib.cardNo.test($cardNo.val());
+
     const zipValid = regexLib.zip.test($zip.val());
 
     const cvvValid = regexLib.cvv.test($cvv.val());
 
     // if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
-    const creditPass = isCreditCard ? cardNumValid && zipValid && cvvValid : true;
+    const creditCardValid = isCreditCard ? cardNoValid && zipValid && cvvValid : true;
 
-    const formValid = nameValid && emailValid && actValid && creditPass;
+    const formValid = nameValid && emailValid && actValid && creditCardValid;
 
     if (formValid) {
         $submit.css("backgroundColor", "#22627e");
@@ -402,10 +401,10 @@ $("form").submit(function (e) {
         showError($name, $nameErrSpan, nameValid);
 
         showError($email, $emailErrSpan, emailValid);
-
+        
         showErrorMessage($(".activities .err-text"), actValid);
-
-
+        
+        
         showErrorBorder($cardNo, cardNoValid);
         showErrorBorder($zip, zipValid);
         showErrorBorder($cvv, cvvValid);
