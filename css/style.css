@@ -192,5 +192,35 @@ button:hover {
 
 .err-border {
 	outline: #c10101 5px solid;
-	transition: outline 5s;
 }
+
+/* label {
+	position: relative;
+}
+.errText {
+	display: block;
+	color: white;
+	background: #3247e5;
+	padding: .8rem;
+	border-radius: 10px;
+	
+	position: absolute;
+	bottom: -5px;
+	left: 20%;
+
+	visibility: hidden;
+}
+.errText::after {
+	content: " ";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #3247e5 transparent transparent transparent;
+}
+
+.errText-show {
+	visibility: visible;
+} */
