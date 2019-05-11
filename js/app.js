@@ -63,7 +63,7 @@ $name.keyup(function () {
     const val = $(this).val();
     const regex = regexLib.name;
     const isValid = regex.test(val);
-
+    
     showErrorMessage($nameErrSpan, isValid);
     showErrorBorder($(this), isValid);
 })
@@ -378,7 +378,6 @@ $("form").submit(function (e) {
     const zipValid = regexLib.zip.test($zip.val());
 
     const cvvValid = regexLib.cvv.test($cvv.val());
-    // console.log(cvvValid)
 
     // if use credit card, test if three fields valid ; if use bitcoin/paypal, return true
     const creditPass = isCreditCard ? cardNumValid && zipValid && cvvValid : true;
@@ -395,7 +394,24 @@ $("form").submit(function (e) {
     } else {
         $submit.css("backgroundColor", "#c10101");
         $submit.text("Re-submit");
-        $formErr.css("display", "block")
+        $formErr.css("display", "block");
+
+        showErrorBorder($name, nameValid);
+        showErrorMessage($nameErrSpan, nameValid);
+
+        showErrorBorder($email, emailValid);
+        showErrorMessage($emailErrSpan, emailValid);
+
+        showErrorMessage($(".activities .err-text"), actValid);
+
+        showErrorBorder($cardNo, cardNumValid);
+        showErrorMessage($cardNo, cardNumValid, "Please re-enter your card no.");
+
+        showErrorBorder($zip, zipValid);
+        showErrorMessage($credErrP, zipValid, "Please enter a 5 digit zip code.");
+        
+        showErrorBorder($cvv, cvvValid);
+        showErrorMessage($credErrP, cvvValid, "Please enter a 3 digit security code.");
     }
 })
 
