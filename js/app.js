@@ -2,6 +2,11 @@
 // * FUNTIONS
 // * --------------------
 
+function showError(input, errTextElement, isValid, text) {
+    showErrorBorder(input, isValid);
+    showErrorMessage(errTextElement, isValid, text);
+}
+
 /**
  * to show an red border on <input>, if passed in boolean is not correct
  * @param {element} input is <input> element to be modify 
@@ -323,18 +328,20 @@ $cardNo.keyup(function () {
     const regex = regexLib.cardNo;
     const isValid = regex.test(val);
 
-    if (isValid) {
-        $credErrP.removeClass("err-text").hide();
-    } else
-    if (!isValid && val === "") {
+    // if (isValid) {
+    //     $credErrP.removeClass("err-text").hide();
+    // } else
+    // if (!isValid && val === "") {
+    //     $credErrP.text("Please enter a credit card number.")
+    //     $credErrP.addClass("err-text").show();
+    // } else {
+    //     $credErrP.text("Credit Card no must be 13-16 digit long.")
+    //     $credErrP.addClass("err-text").show();
+    // }
+    showError($(this), $credErrP, isValid, "Please enter a number that is between 13 and 16 digits long.");
+    if (!isValid && val === "") 
         $credErrP.text("Please enter a credit card number.")
-        $credErrP.addClass("err-text").show();
-    } else {
-        $credErrP.text("Please enter a number that is between 13 and 16 digits long.")
-        $credErrP.addClass("err-text").show();
-    }
-    showErrorBorder($(this), isValid)
-    // showErrorMessage(span, isCorrect, "Please enter a number that is between 13 and 16 digits long.")
+    
 })
 
 const $zip = $("#zip");
@@ -343,8 +350,7 @@ $zip.keyup(function () {
     const regex = regexLib.zip;
     const isValid = regex.test(val);
 
-    showErrorBorder($(this), isValid);
-    showErrorMessage($credErrP, isValid, "Please enter a 5 digit zip code.") 
+    showError($(this), $credErrP, isValid, "Please enter a 5 digit zip code.");
 })
 
 const $cvv = $("#cvv");
@@ -353,8 +359,7 @@ $cvv.keyup(function () {
     const regex = regexLib.cvv;
     const isValid = regex.test(val);
 
-    showErrorBorder($(this), isValid);
-    showErrorMessage($credErrP, isValid, "Please enter a 3 digit security code.") 
+    showError($(this), $credErrP, isValid, "Please enter a 3 digit security code.");
 })
 
 //--------------------
@@ -394,11 +399,9 @@ $("form").submit(function (e) {
         $submit.text("Re-submit");
         $formErr.css("display", "block");
 
-        showErrorBorder($name, nameValid);
-        showErrorMessage($nameErrSpan, nameValid);
+        showError($name, $nameErrSpan, nameValid);
 
-        showErrorBorder($email, emailValid);
-        showErrorMessage($emailErrSpan, emailValid);
+        showError($email, $emailErrSpan, emailValid);
 
         showErrorMessage($(".activities .err-text"), actValid);
 
